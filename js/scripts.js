@@ -1,7 +1,5 @@
 function coinCombo(n) {
   n *= 100;
-  console.log(n);
-
 
   var coins = ["half-dollars", "quarters", "dimes", "nickels", "pennies"];
 
@@ -44,21 +42,28 @@ function coinCombo(n) {
       n = 0;
     }
   }
-console.log(tally);
+
   var result = "Your coin combo is ";
 
   for (var i = 0; i <= 4; i++) {
-    console.log(i);
-    console.log(coins[i]);
     if(tally[i] > 0) {
       result += tally[i] + " " + coins[i] + ", ";
     }
   }
 
-
   result = result.substring(0, result.length - 2);
   return result;
-
-
-
 };
+
+$(document).ready(function() {
+  $("#converter").submit(function(event) {
+    var input = $("#input").val();
+    var n = parseFloat(input);
+
+    var result = coinCombo(n);
+    $("#result").text(result);
+    $("#result").show();
+
+    event.preventDefault();
+  });
+});
